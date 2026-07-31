@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LearnTrack{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header>
+    <div class="brand">
+
+        <div class="brand-logo">
+            📖
+        </div>
+
+        <div class="brand-text">
+            <h2>LearnTrack</h2>
+            <p>
+                SMART STUDY PLANNING AND PROGRESS<br>
+                MONITORING SYSTEM
+            </p>
+        </div>
+
+    </div>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>
