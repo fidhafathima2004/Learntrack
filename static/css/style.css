@@ -1,0 +1,1162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #eef5ff;
+    color: #1f2937;
+}
+
+/* ================= HEADER ================= */
+
+header {
+    height: 105px;
+    background: linear-gradient(135deg, #1760d5, #2454c5);
+    color: white;
+    padding: 16px 65px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.brand-logo {
+    font-size: 48px;
+    line-height: 1;
+}
+
+.brand-text h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.brand-text p {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1.35;
+    color: white;
+}
+
+/* ================= MAIN ================= */
+
+main {
+    padding: 0;
+}
+
+/* ================= LOGIN PAGE ================= */
+
+.login-page {
+    min-height: calc(100vh - 105px);
+    height: calc(100vh - 105px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #eef6ff, #f8fbff);
+}
+
+/* Background circles */
+
+.login-page::before {
+    content: "";
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    left: -190px;
+    bottom: -170px;
+    background: #dceaff;
+    border-radius: 50%;
+}
+
+.login-page::after {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    right: -170px;
+    bottom: -180px;
+    background: #e3efff;
+    border-radius: 50%;
+}
+
+/* ================= LOGIN CARD ================= */
+
+.login-card {
+    position: relative;
+    z-index: 5;
+    width: 410px;
+    background: white;
+    padding: 20px 30px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(30, 91, 215, 0.14);
+    border: 1px solid #edf2ff;
+}
+
+/* ================= LOGIN ICON ================= */
+
+.login-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e5efff;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+.login-card h1 {
+    color: #123b8f;
+    font-size: 24px;
+    margin-bottom: 3px;
+}
+
+.login-subtitle {
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+/* ================= FORM ================= */
+
+.login-card form {
+    text-align: left;
+}
+
+.login-card label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #17366f;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    height: 46px;
+    border: 1px solid #cbd7ea;
+    border-radius: 9px;
+    background: white;
+    transition: 0.2s;
+}
+
+.input-box:focus-within {
+    border-color: #2161d1;
+    box-shadow: 0 0 0 3px rgba(33, 97, 209, 0.10);
+}
+
+.input-box span {
+    width: 42px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    padding: 0 10px 0 0;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+}
+
+.input-box input::placeholder {
+    color: #91a1bb;
+}
+
+/* ================= LOGIN BUTTON ================= */
+
+.login-button {
+    width: 100%;
+    margin-top: 17px;
+    padding: 12px;
+    border: none;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #1760d5, #2454c5);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.login-button:hover {
+    background: #1748b0;
+}
+
+/* ================= DIVIDER ================= */
+
+.login-divider {
+    margin: 15px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #64748b;
+}
+
+.login-divider::before,
+.login-divider::after {
+    content: "";
+    height: 1px;
+    background: #d9e0ec;
+    flex: 1;
+}
+
+.login-divider span {
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* ================= REGISTER ================= */
+
+.register-link {
+    display: block;
+    padding: 9px;
+    border: 1.5px solid #3970d5;
+    border-radius: 9px;
+    color: #1854b5;
+    font-size: 13px;
+}
+
+.register-link:hover {
+    background: #f1f6ff;
+    text-decoration: none;
+}
+
+/* ================= STUDY ILLUSTRATIONS ================= */
+
+.study-left,
+.study-right {
+    position: absolute;
+    z-index: 2;
+}
+
+/* Left */
+
+.study-left {
+    left: 35px;
+    bottom: 18px;
+    font-size: 58px;
+    opacity: 0.8;
+}
+
+.pencil-box {
+    font-size: 27px;
+    margin-left: 55px;
+    margin-top: 2px;
+}
+
+/* Right */
+
+.study-right {
+    right: 50px;
+    top: 65px;
+    text-align: center;
+    color: #76a3ed;
+}
+
+.graduation {
+    font-size: 50px;
+    margin-bottom: 8px;
+}
+
+.study-message {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+    font-style: italic;
+}
+
+.paper-plane {
+    font-size: 38px;
+    margin-top: 18px;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 30px;
+}
+
+.dashboard h1 {
+    font-size: 32px;
+    color: #312e81;
+    margin-bottom: 8px;
+}
+
+.dashboard > p {
+    color: #6b7280;
+    margin-bottom: 30px;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.card {
+    background: white;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.07);
+    border: 1px solid #eef0ff;
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.13);
+}
+
+.card h3 {
+    color: #312e81;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #6b7280;
+    line-height: 1.5;
+    margin-bottom: 5px;
+}
+
+/* ================= LINKS & BUTTONS ================= */
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .study-left,
+    .study-right {
+        display: none;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 410px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    header {
+        height: auto;
+        padding: 14px 20px;
+    }
+
+    .brand-logo {
+        font-size: 40px;
+    }
+
+    .brand-text h2 {
+        font-size: 27px;
+    }
+
+    .brand-text p {
+        font-size: 10px;
+    }
+
+    .login-page {
+        min-height: calc(100vh - 90px);
+        height: auto;
+        padding: 20px 15px;
+    }
+
+    .login-card {
+        padding: 20px 22px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard {
+        padding: 25px 15px;
+    }
+}
+/* ================= REGISTER PAGE - FINAL FIT ================= */
+
+.register-card {
+    width: 430px;
+    padding: 10px 28px;
+}
+
+/* Icon */
+.register-card .login-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+    margin: 0 auto 3px;
+}
+
+/* Heading */
+.register-card h1 {
+    font-size: 22px;
+    margin-bottom: 2px;
+}
+
+/* Subtitle */
+.register-card .login-subtitle {
+    font-size: 11px;
+    margin-bottom: 6px;
+}
+
+/* Labels */
+.register-card label {
+    margin-top: 4px;
+    margin-bottom: 2px;
+    font-size: 12px;
+}
+
+/* Input */
+.register-card .input-box {
+    height: 35px;
+}
+
+.register-card .input-box span {
+    width: 36px;
+    font-size: 15px;
+}
+
+.register-card .input-box input {
+    font-size: 12px;
+}
+
+/* Button */
+.register-card .login-button {
+    margin-top: 9px;
+    padding: 8px;
+    font-size: 13px;
+}
+
+/* Divider */
+.register-card .login-divider {
+    margin: 7px 0 5px;
+}
+
+.register-card .login-divider span {
+    font-size: 10px;
+}
+
+/* Back to Login */
+.register-card .register-link {
+    padding: 6px;
+    font-size: 12px;
+}
+
+/* ================= DASHBOARD - FINAL UI ================= */
+
+.dashboard {
+    max-width: 1100px;
+    margin: auto;
+    padding: 38px 30px;
+}
+
+.dashboard-header h1 {
+    font-size: 32px;
+    color: #123b8f;
+    margin-bottom: 6px;
+}
+
+.dashboard-header p {
+    color: #64748b;
+    font-size: 15px;
+    margin-bottom: 28px;
+}
+
+/* Summary Cards */
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.summary-card {
+    background: white;
+    border-radius: 14px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 5px 18px rgba(30, 91, 215, 0.09);
+    border: 1px solid #e5ecf8;
+}
+
+.summary-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #eaf2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+}
+
+.summary-card h3 {
+    color: #123b8f;
+    font-size: 22px;
+    margin-bottom: 2px;
+}
+
+.summary-card p {
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* Main Cards */
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.dashboard-cards .card {
+    padding: 24px;
+    border-radius: 15px;
+    background: white;
+    border: 1px solid #e5ecf8;
+    box-shadow: 0 5px 18px rgba(30, 91, 215, 0.08);
+}
+
+.dashboard-cards .card-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.dashboard-cards .card h3 {
+    color: #123b8f;
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.dashboard-cards .card p {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.dashboard-button {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 7px;
+    background: #1760d5;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.dashboard-button:hover {
+    background: #1748b0;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .summary-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .summary-cards,
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard {
+        padding: 25px 15px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 26px;
+    }
+}
+
+/* ================= ADMIN DASHBOARD ================= */
+
+.admin-dashboard {
+    max-width: 1100px;
+    margin: auto;
+    padding: 32px 30px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.admin-header h1 {
+    font-size: 30px;
+    color: #123b8f;
+    margin-bottom: 5px;
+}
+
+.admin-header p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.admin-badge {
+    background: #eaf2ff;
+    color: #1854b5;
+    padding: 9px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Summary */
+
+.admin-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 24px;
+}
+
+.admin-summary-card {
+    background: white;
+    padding: 16px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    border: 1px solid #e5ecf8;
+    box-shadow: 0 5px 18px rgba(30, 91, 215, 0.08);
+}
+
+.admin-summary-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 11px;
+    background: #eaf2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.admin-summary-card h3 {
+    color: #123b8f;
+    font-size: 21px;
+}
+
+.admin-summary-card p {
+    color: #64748b;
+    font-size: 12px;
+}
+
+
+/* Management Cards */
+
+.admin-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.admin-card {
+    background: white;
+    padding: 22px;
+    border-radius: 15px;
+    border: 1px solid #e5ecf8;
+    box-shadow: 0 5px 18px rgba(30, 91, 215, 0.08);
+}
+
+.admin-card-icon {
+    font-size: 28px;
+    margin-bottom: 7px;
+}
+
+.admin-card h2 {
+    color: #123b8f;
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+
+.admin-card p {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+.admin-button {
+    display: inline-block;
+    padding: 8px 13px;
+    border: none;
+    border-radius: 7px;
+    background: #1760d5;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.admin-button:hover {
+    background: #1748b0;
+}
+
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .admin-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .admin-summary,
+    .admin-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-header {
+        align-items: flex-start;
+        gap: 12px;
+        flex-direction: column;
+    }
+}
+/* ================= UPLOAD SYLLABUS ================= */
+
+.upload-page {
+    min-height: calc(100vh - 105px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #eef6ff, #f8fbff);
+}
+
+.upload-card {
+    width: 500px;
+    background: white;
+    padding: 32px 38px;
+    border-radius: 18px;
+    text-align: center;
+    border: 1px solid #e5ecf8;
+    box-shadow: 0 10px 30px rgba(30, 91, 215, 0.12);
+}
+
+.upload-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: #eaf2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.upload-card h1 {
+    color: #123b8f;
+    font-size: 27px;
+    margin-bottom: 7px;
+}
+
+.upload-subtitle {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 22px;
+}
+
+.upload-card form {
+    text-align: left;
+}
+
+.upload-card label {
+    display: block;
+    color: #17366f;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.file-box {
+    border: 1.5px dashed #9bb8e8;
+    border-radius: 10px;
+    padding: 14px;
+    background: #f8fbff;
+}
+
+.file-box input {
+    width: 100%;
+    font-size: 13px;
+}
+
+.file-note {
+    color: #94a3b8;
+    font-size: 11px;
+    margin-top: 6px;
+}
+
+.upload-button {
+    width: 100%;
+    margin-top: 18px;
+    padding: 11px;
+    border: none;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #1760d5, #2454c5);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.upload-button:hover {
+    background: #1748b0;
+}
+
+.upload-message {
+    padding: 9px;
+    margin-bottom: 15px;
+    border-radius: 7px;
+    background: #eaf7ee;
+    color: #23733b;
+    font-size: 12px;
+}
+
+.back-link {
+    display: block;
+    margin-top: 18px;
+    color: #1854b5;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ================= SYLLABUS PAGE ================= */
+
+.syllabus-page {
+    max-width: 1050px;
+    margin: auto;
+    padding: 32px 30px;
+}
+
+.syllabus-header {
+    margin-bottom: 22px;
+}
+
+.syllabus-header h1 {
+    color: #123b8f;
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.syllabus-header p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+/* Syllabus Card */
+
+.syllabus-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #e5ecf8;
+    box-shadow: 0 6px 20px rgba(30, 91, 215, 0.08);
+}
+
+.syllabus-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5ecf8;
+}
+
+.syllabus-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: #eaf2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+
+.syllabus-title h2 {
+    color: #123b8f;
+    font-size: 21px;
+    margin-bottom: 3px;
+}
+
+.syllabus-title p {
+    color: #64748b;
+    font-size: 12px;
+}
+
+
+/* Modules */
+
+.module-list {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.module-card {
+    display: flex;
+    gap: 14px;
+    padding: 17px;
+    background: #f8fbff;
+    border: 1px solid #e3ebf8;
+    border-radius: 12px;
+}
+
+.module-number {
+    min-width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #1760d5;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.module-content h3 {
+    color: #173f91;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.module-content ul {
+    padding-left: 18px;
+}
+
+.module-content li {
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+
+/* Empty State */
+
+.empty-syllabus {
+    background: white;
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 16px;
+    border: 1px solid #e5ecf8;
+}
+
+.empty-syllabus div {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.empty-syllabus h2 {
+    color: #123b8f;
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+
+.empty-syllabus p {
+    color: #64748b;
+    font-size: 13px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 700px) {
+
+    .module-list {
+        grid-template-columns: 1fr;
+    }
+
+    .syllabus-page {
+        padding: 25px 15px;
+    }
+}
+
+/* ================= CREATE STUDY PLAN ================= */
+
+.study-plan-page {
+    min-height: calc(100vh - 105px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #eef6ff, #f8fbff);
+}
+
+.study-plan-card {
+    width: 480px;
+    background: white;
+    padding: 32px 38px;
+    border-radius: 18px;
+    text-align: center;
+    border: 1px solid #e5ecf8;
+    box-shadow: 0 10px 30px rgba(30, 91, 215, 0.12);
+}
+
+.study-plan-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: #eaf2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.study-plan-card h1 {
+    color: #123b8f;
+    font-size: 27px;
+    margin-bottom: 7px;
+}
+
+.study-plan-subtitle {
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+.study-plan-card form {
+    text-align: left;
+}
+
+.study-plan-card label {
+    display: block;
+    color: #17366f;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 7px;
+    margin-top: 14px;
+}
+
+.plan-input {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #d6e2f3;
+    border-radius: 9px;
+    background: #f8fbff;
+    overflow: hidden;
+}
+
+.plan-input span {
+    width: 45px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.plan-input input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding-right: 12px;
+    font-size: 13px;
+    color: #334155;
+}
+
+.plan-note {
+    color: #94a3b8;
+    font-size: 11px;
+    margin-top: 7px;
+}
+
+.plan-button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 11px;
+    border: none;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #1760d5, #2454c5);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.plan-button:hover {
+    background: #1748b0;
+}
+.mcq-form-card {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.mcq-form-card .form-group {
+    margin-bottom: 20px;
+}
+
+.mcq-form-card label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.mcq-form-card input,
+.mcq-form-card textarea,
+.mcq-form-card select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.mcq-form-card textarea {
+    min-height: 100px;
+}
+
+.mcq-form-card .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
