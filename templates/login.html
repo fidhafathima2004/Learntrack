@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div class="login-page">
+
+    <!-- Left Illustration -->
+    <div class="study-left">
+        <div class="book-stack">📚</div>
+        <div class="pencil-box">✏️ ✏️ ✏️</div>
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-card">
+
+        <div class="login-icon">
+            🎓
+        </div>
+
+        <h1>Welcome Back!</h1>
+
+        <p class="login-subtitle">
+            Login to continue your learning journey.
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+
+            <div class="input-box">
+                <span>♙</span>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                    required
+                >
+            </div>
+
+            <label for="password">Password</label>
+
+            <div class="input-box">
+                <span>🔒</span>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-button">
+                Login to LearnTrack&nbsp; →
+            </button>
+
+        </form>
+
+        <div class="login-divider">
+            <span>New to LearnTrack?</span>
+        </div>
+
+        <a href="{% url 'register' %}" class="register-link">
+            Create an Account
+        </a>
+
+    </div>
+
+    <!-- Right Illustration -->
+    <div class="study-right">
+
+        <div class="graduation">
+            🎓
+        </div>
+
+        <div class="study-message">
+            Better<br>
+            Planning<br>
+            Brighter<br>
+            Future
+        </div>
+
+        <div class="paper-plane">
+            ✈️
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
