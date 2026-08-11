@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload Syllabus - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div class="upload-page">
+
+    <div class="upload-card">
+
+        <div class="upload-icon">
+            📄
+        </div>
+
+        <h1>Upload Syllabus</h1>
+
+        <p class="upload-subtitle">
+            Upload the course syllabus PDF to extract study modules automatically.
+        </p>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="upload-message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <label for="syllabus">Syllabus PDF</label>
+
+            <div class="file-box">
+                <input
+                    type="file"
+                    id="syllabus"
+                    name="syllabus"
+                    accept=".pdf"
+                    required
+                >
+            </div>
+
+            <p class="file-note">
+                Only PDF files are allowed.
+            </p>
+
+            <button type="submit" class="upload-button">
+                Upload Syllabus →
+            </button>
+
+        </form>
+
+        <a href="{% url 'admin_dashboard' %}" class="back-link">
+            ← Back to Admin Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
