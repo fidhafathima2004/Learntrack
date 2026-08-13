@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}My Syllabus - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <h1>My Syllabus</h1>
+    <p>View your syllabus and modules.</p>
+
+    {% for syllabus in syllabuses %}
+
+        <div class="card" style="margin-top: 20px;">
+
+            <h2>{{ syllabus.name }}</h2>
+
+            {% for module in syllabus.modules.all %}
+
+                <h3 style="margin-top: 20px;">
+                    Module {{ module.module_number }}
+                </h3>
+
+                <ul>
+                    {% for topic in module.topics %}
+                        <li>{{ topic }}</li>
+                    {% endfor %}
+                </ul>
+
+            {% endfor %}
+
+        </div>
+
+    {% empty %}
+
+        <p>No syllabus available.</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
