@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <!-- Admin Header -->
+    <div class="dashboard-header">
+        <div>
+            <h1>Admin Dashboard</h1>
+            <p>Manage syllabus, modules, questions and students.</p>
+        </div>
+
+        <div>
+            👤 <strong>Administrator</strong>
+        </div>
+    </div>
+
+
+    <!-- Summary Cards -->
+    <div class="summary-cards">
+
+        <div class="summary-card">
+            <div class="summary-icon">📚</div>
+            <div>
+                <h3>{{ syllabus_count }}</h3>
+                <p>Syllabus</p>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">📖</div>
+            <div>
+                <h3>{{ module_count }}</h3>
+                <p>Modules</p>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">📝</div>
+            <div>
+                <h3>{{ mcq_count }}</h3>
+                <p>MCQ Questions</p>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">👥</div>
+            <div>
+                <h3>{{ student_count }}</h3>
+                <p>Students</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Admin Functions -->
+    <div class="dashboard-cards">
+
+        <!-- Upload Syllabus -->
+        <div class="card">
+            <div class="card-icon">📄</div>
+
+            <h3>Upload Syllabus</h3>
+
+            <p>
+                Upload the course syllabus PDF and extract study modules automatically.
+            </p>
+
+            <a href="{% url 'upload_syllabus' %}" class="dashboard-button">
+                Upload Syllabus →
+            </a>
+        </div>
+
+
+        <!-- Manage Modules -->
+        <div class="card">
+            <div class="card-icon">📚</div>
+
+            <h3>Manage Modules</h3>
+
+            <p>
+                View and manage the modules extracted from the uploaded syllabus.
+            </p>
+
+            <a href="{% url 'syllabus' %}" class="dashboard-button">
+                Manage Modules →
+            </a>
+        </div>
+
+
+        <!-- Question Bank -->
+        <div class="card">
+            <div class="card-icon">📝</div>
+
+            <h3>Question Bank</h3>
+
+            <p>
+                Add and manage module-wise MCQ questions for student assessments.
+            </p>
+
+            <a href="{% url 'question_bank' %}" class="dashboard-button">
+                Question Bank →
+            </a>
+        </div>
+
+
+        <!-- Student Management -->
+        <div class="card">
+            <div class="card-icon">👥</div>
+
+            <h3>Student Management</h3>
+
+            <p>
+                View and manage registered students and their information.
+            </p>
+
+            <a href="#" class="dashboard-button">
+                Student Management →
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
