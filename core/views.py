@@ -121,3 +121,20 @@ def upload_syllabus(request):
 def syllabus(request):
     syllabuses = Syllabus.objects.all()
     return render(request, 'syllabus.html', {'syllabuses': syllabuses})
+
+
+def admin_dashboard(request):
+    syllabus_count = Syllabus.objects.count()
+    module_count = Module.objects.count()
+    student_count = User.objects.filter(is_staff=False).count()
+
+    return render(
+        request,
+        'admin_dashboard.html',
+        {
+            'syllabus_count': syllabus_count,
+            'module_count': module_count,
+            'mcq_count': 0,
+            'student_count': student_count,
+        }
+    )
