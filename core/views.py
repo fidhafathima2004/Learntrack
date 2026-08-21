@@ -138,3 +138,63 @@ def admin_dashboard(request):
             'student_count': student_count,
         }
     )
+
+from datetime import date, timedelta
+from .models import StudyPlan
+
+def dashboard(request):
+    study_plan = StudyPlan.objects.filter(
+        student=request.user
+    ).order_by('-created_at').first()
+
+    return render(
+        request,
+        'dashboard.html',
+        {'study_plan': study_plan}
+    )
+
+
+def create_study_plan(request):
+    if request.method == 'POST':
+        exam_date = request.POST.get('exam_date')
+        daily_hours = request.POST.get('daily_hours')
+
+        if exam_date and daily_hours:
+            syllabus = Syllabus.objects.first()
+            modules = Module.objects.filter(syllabus=syllabus).order_by('module_number')
+
+            exam = date.fromisoformat(exam_date)
+            today = date.today()
+            remaining_days = (exam - today).days
+
+            schedule = []
+
+            if remaining_days > 0 and modules.exists():
+                module_count = modules.count()
+                days_per_module = max(1, remaining_days // module_count)
+                current_date = today
+
+                for module in modules:
+                    for _ in range(days_per_module):
+                        if current_date >= exam:
+                            break
+                        schedule.append({
+                            'date': current_date.strftime('%Y-%m-%d'),
+                            'module_number': module.module_number,
+                            'hours': float(daily_hours),
+                            'status': 'Pending'
+                        })
+                        current_date += timedelta(days=1)
+
+            StudyPlan.objects.create(
+                student=request.user,
+                syllabus=syllabus,
+                exam_date=exam_date,
+                daily_hours=daily_hours,
+                schedule=schedule
+            )
+
+            messages.success(request, 'Personalized study plan generated successfully.')
+            return redirect('dashboard')
+
+    return render(request, 'create_study_plan.html')
