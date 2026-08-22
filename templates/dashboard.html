@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>Welcome to LearnTrack 👋</h1>
+            <p>Plan your studies, track your progress and achieve your goals.</p>
+        </div>
+    </div>
+
+
+    <!-- Summary Cards -->
+    <div class="summary-cards">
+
+        <div class="summary-card">
+            <div class="summary-icon">📚</div>
+            <div>
+                <h3>
+                    {% if study_plan %}
+                        {{ study_plan.syllabus.modules.count }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </h3>
+                <p>Total Modules</p>
+            </div>
+        </div>
+
+
+        <div class="summary-card">
+            <div class="summary-icon">📅</div>
+            <div>
+                <h3>0</h3>
+                <p>Completed Modules</p>
+            </div>
+        </div>
+
+
+        <div class="summary-card">
+            <div class="summary-icon">📝</div>
+            <div>
+                <h3>0%</h3>
+                <p>Overall Progress</p>
+            </div>
+        </div>
+
+
+        <div class="summary-card">
+            <div class="summary-icon">⏱️</div>
+            <div>
+                <h3>
+                    {% if study_plan %}
+                        {{ study_plan.daily_hours }} hrs
+                    {% else %}
+                        0 hrs
+                    {% endif %}
+                </h3>
+                <p>Daily Study Hours</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Generated Study Plan -->
+    <div class="study-plan-section">
+
+        <h2>My Study Plan</h2>
+
+        {% if study_plan %}
+            <p>Here is your personalized study plan based on your syllabus and exam date.</p>
+
+            <div class="study-plan-card">
+                <h3>{{ study_plan.syllabus.name }}</h3>
+                <p>Exam Date: {{ study_plan.exam_date }}</p>
+                <p>Daily Study Hours: {{ study_plan.daily_hours }} hrs</p>
+
+                <h4>Study Schedule:</h4>
+                <ul>
+                    {% for day, modules in study_plan.schedule.items %}
+                        <li><strong>{{ day }}:</strong> {{ modules|join:", " }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        {% else %}
+            <p>You have not created a study plan yet. Start planning to achieve your goals!</p>
+            <a href="{% url 'create_study_plan' %}" class="dashboard-button">
+                Create Study Plan →
+            </a>
+        {% endif %}
+
+    <!-- Main Dashboard Cards -->
+    <div class="dashboard-cards">
+
+
+        <!-- Syllabus -->
+        <div class="card">
+
+            <div class="card-icon">📖</div>
+
+            <h3>My Syllabus</h3>
+
+            <p>
+                View your available syllabus and study modules.
+            </p>
+
+            <a href="{% url 'syllabus' %}" class="dashboard-button">
+                View Syllabus →
+            </a>
+
+        </div>
+
+
+        <!-- Study Plan -->
+        <div class="card">
+
+            <div class="card-icon">📅</div>
+
+            <h3>Study Plan</h3>
+
+            <p>
+                Create and manage your personalized study schedule.
+            </p>
+
+            <a href="{% url 'create_study_plan' %}" class="dashboard-button">
+                Create Study Plan →
+            </a>
+
+        </div>
+
+
+        <!-- MCQ -->
+        <div class="card">
+
+            <div class="card-icon">📝</div>
+
+            <h3>MCQ Assessment</h3>
+
+            <p>
+                Test your knowledge through module-wise assessments.
+            </p>
+
+            <button type="button" class="dashboard-button">
+                Take Test →
+            </button>
+
+        </div>
+
+
+        <!-- Progress -->
+        <div class="card">
+
+            <div class="card-icon">📊</div>
+
+            <h3>Progress</h3>
+
+            <p>
+                Monitor your learning progress and performance.
+            </p>
+
+            <button type="button" class="dashboard-button">
+                View Progress →
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
