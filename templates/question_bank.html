@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}Question Bank - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>Question Bank 📝</h1>
+            <p>Manage module-wise MCQ questions for student assessments.</p>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <h3>Add New MCQ</h3>
+
+        <p>
+            Create module-wise questions for the assessment section.
+        </p>
+
+        <a href="{% url 'add_mcq' %}" class="dashboard-button">
+    + Add Question
+</a>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Existing Questions</h3>
+
+        {% if mcqs %}
+
+        <div style="overflow-x:auto;">
+
+            <table style="width:100%; border-collapse:collapse; margin-top:15px;">
+
+                <thead>
+                    <tr>
+                        <th style="padding:12px; text-align:left;">#</th>
+                        <th style="padding:12px; text-align:left;">Module</th>
+                        <th style="padding:12px; text-align:left;">Question</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for mcq in mcqs %}
+
+                    <tr>
+                        <td style="padding:12px;">{{ forloop.counter }}</td>
+
+                        <td style="padding:12px;">
+                            Module {{ mcq.module.module_number }}
+                        </td>
+
+                        <td style="padding:12px;">
+                            {{ mcq.question }}
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <p style="margin-top:15px;">
+            No MCQ questions have been added yet.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+    <a href="{% url 'admin_dashboard' %}" class="dashboard-button">
+        ← Back to Admin Dashboard
+    </a>
+
+</div>
+
+{% endblock %}
