@@ -1160,3 +1160,13 @@ a {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
+
+/* UI & Responsive transition enhancements */
+@media (max-width: 768px) {
+  .dashboard-container, .admin-container {
+    padding: 1rem;
+  }
+  .card {
+    margin-bottom: 1rem;
+  }
+}
