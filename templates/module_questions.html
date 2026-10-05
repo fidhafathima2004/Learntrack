@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Module {{ module.module_number }} Questions - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>Module {{ module.module_number }} Questions 📝</h1>
+            <p>View MCQ questions for this module.</p>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <h3>Existing Questions</h3>
+
+        {% if mcqs %}
+
+            {% for mcq in mcqs %}
+
+                <div class="card">
+                    <h4>{{ forloop.counter }}. {{ mcq.question }}</h4>
+
+                    <p>A. {{ mcq.option1 }}</p>
+                    <p>B. {{ mcq.option2 }}</p>
+                    <p>C. {{ mcq.option3 }}</p>
+                    <p>D. {{ mcq.option4 }}</p>
+
+                    <p>
+                        <strong>Correct Answer:</strong>
+                        {{ mcq.correct_answer }}
+                    </p>
+                    <div style="margin-top: 15px;">
+                        <a href="{% url 'edit_mcq' mcq.id %}" class="dashboard-button">
+                            ✏️ Edit
+                        </a>
+                        <a href="{% url 'delete_mcq' mcq.id %}"
+                        class="dashboard-button"
+                        onclick="return confirm('Are you sure you want to delete this question?');">
+                        🗑️ Delete</a>
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>No questions have been added for this module yet.</p>
+
+        {% endif %}
+
+    </div>
+
+    <a href="{% url 'question_bank' %}" class="dashboard-button">
+        ← Back to Question Bank
+    </a>
+
+</div>
+
+{% endblock %}

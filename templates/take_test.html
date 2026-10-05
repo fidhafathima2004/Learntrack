@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <div class="dashboard-header">
+        <h1>Take Test 📝</h1>
+        <p>Select a module to start the mock test.</p>
+    </div>
+
+    {% for module in modules %}
+
+        <div class="card">
+
+            <h3>Module {{ module.module_number }}</h3>
+
+            {% if module in unlocked_modules %}
+
+                <a href="{% url 'mock_test' module.id %}"
+                   class="dashboard-button">
+                    Start Test →
+                </a>
+
+            {% else %}
+
+                <p style="color:orange;">
+                    🔒 Complete the previous requirement to unlock.
+                </p>
+                
+
+            {% endif %}
+
+        </div>
+        
+
+    {% endfor %}
+    <div style="text-align:center; margin-top:30px;">
+    <a href="{% url 'dashboard' %}" class="dashboard-button">
+        ← Back to Dashboard
+    </a>
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit MCQ - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>Edit MCQ ✏️</h1>
+            <p>Update the question and answer options.</p>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Module</label>
+            <select name="module" required>
+                {% for module in modules %}
+                    <option value="{{ module.id }}"
+                        {% if module.id == mcq.module.id %}selected{% endif %}>
+                        Module {{ module.module_number }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <br><br>
+
+            <label>Question</label>
+            <textarea name="question" required>{{ mcq.question }}</textarea>
+
+            <br><br>
+
+            <label>Option A</label>
+            <input type="text" name="option1" value="{{ mcq.option1 }}" required>
+
+            <br><br>
+
+            <label>Option B</label>
+            <input type="text" name="option2" value="{{ mcq.option2 }}" required>
+
+            <br><br>
+
+            <label>Option C</label>
+            <input type="text" name="option3" value="{{ mcq.option3 }}" required>
+
+            <br><br>
+
+            <label>Option D</label>
+            <input type="text" name="option4" value="{{ mcq.option4 }}" required>
+
+            <br><br>
+
+            <label>Correct Answer</label>
+            <input type="text"
+                   name="correct_answer"
+                   value="{{ mcq.correct_answer }}"
+                   required>
+
+            <br><br>
+
+            <button type="submit" class="dashboard-button">
+                💾 Update Question
+            </button>
+
+            <a href="{% url 'module_questions' mcq.module.id %}"
+               class="dashboard-button">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

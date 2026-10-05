@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Students - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <h1>👨‍🎓 Manage Students</h1>
+    <p>Registered Students</p>
+
+    <!-- Semester 1 -->
+    <div class="card">
+
+        <h2>📘 Semester 1 Students</h2>
+
+        {% for student in students %}
+
+            {% if student.studentprofile.semester == 'S1' %}
+
+                <div class="student-row">
+                    <h3>{{ student.username }}</h3>
+                    <p>{{ student.email }}</p>
+
+                    <a href="{% url 'delete_student' student.id %}"
+                       class="dashboard-button">
+                        🗑️ Delete
+                    </a>
+                </div>
+
+            {% endif %}
+
+        {% empty %}
+
+            <p>No students registered yet.</p>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- Semester 2 -->
+    <div class="card">
+
+        <h2>📗 Semester 2 Students</h2>
+
+        {% for student in students %}
+
+            {% if student.studentprofile.semester == 'S2' %}
+
+                <div class="student-row">
+                    <h3>{{ student.username }}</h3>
+                    <p>{{ student.email }}</p>
+
+                    <a href="{% url 'delete_student' student.id %}"
+                       class="dashboard-button">
+                        🗑️ Delete
+                    </a>
+                </div>
+
+            {% endif %}
+
+        {% empty %}
+
+            <p>No students registered yet.</p>
+
+        {% endfor %}
+
+    </div>
+
+
+    <a href="{% url 'admin_dashboard' %}"
+   class="back-dashboard"
+   style="display:block; width:fit-content; margin:30px auto 0; padding:8px 14px; border-radius:7px; background:#1760d5; color:white !important; font-size:13px; font-weight:600;">
+    ← Back to Admin Dashboard
+</a>
+
+</div>
+
+{% endblock %}

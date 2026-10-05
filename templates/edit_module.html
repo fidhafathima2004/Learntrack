@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Module - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <div class="card">
+
+        <h2>✏️ Edit Module</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Module Number</label>
+            <input type="number"
+                   name="module_number"
+                   value="{{ module.module_number }}"
+                   required>
+
+            <br><br>
+
+            <label>Topics</label>
+
+            <textarea name="topics" rows="8" required>{% for topic in module.topics %}{{ topic }}
+{% endfor %}</textarea>
+
+            <br><br>
+
+            <button type="submit" class="dashboard-button">
+                💾 Save Changes
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="{% url 'admin_modules' %}" class="dashboard-button">
+            ← Back
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

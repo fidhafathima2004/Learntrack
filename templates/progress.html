@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="margin-bottom: 25px;">My Progress</h2>
+
+<div style="
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+">
+
+    <h3 style="margin-top: 0;">Module-wise Progress</h3>
+
+    <div style="width: 65%; height: 220px; margin: 10px auto;">
+        <canvas id="progressChart"></canvas>
+    </div>
+
+</div>
+
+
+<div style="
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+">
+
+{% for item in progress_data %}
+
+<div style="
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+">
+
+    <h3 style="margin-top: 0;">
+        Module {{ item.module.module_number }}
+    </h3>
+
+    <p><b>Score:</b> {{ item.score }}</p>
+
+    <p><b>Percentage:</b> {{ item.percentage }}%</p>
+
+    <div style="
+        background: #e5e7eb;
+        height: 8px;
+        border-radius: 5px;
+        margin: 12px 0;
+    ">
+        <div style="
+            background: #1760d5;
+            width: {{ item.percentage }}%;
+            height: 8px;
+            border-radius: 5px;
+        "></div>
+    </div>
+
+    {% if item.completed %}
+        <p style="margin: 8px 0;">
+            Status: <b>Completed ✅</b>
+        </p>
+    {% else %}
+        <p style="margin: 8px 0;">
+            Status: <b>Pending ⏳</b>
+        </p>
+    {% endif %}
+
+    {% if item.passed %}
+        <p style="margin: 8px 0;">
+            Result: <b>Passed ✅</b>
+        </p>
+    {% else %}
+        <p style="margin: 8px 0;">
+            Result: <b>Not Passed ❌</b>
+        </p>
+    {% endif %}
+
+</div>
+
+{% empty %}
+
+<p>No progress available yet.</p>
+
+{% endfor %}
+
+</div>
+
+
+<!-- Back to Dashboard -->
+
+<<div style="text-align: center; margin-top: 25px;">
+
+    <div style="text-align: center; margin-top: 25px;">
+
+    <a href="{% url 'reports' %}"
+       class="dashboard-button"
+       style="display: block; width: fit-content; margin: 0 auto 12px;">
+        📄 View Progress Report
+    </a>
+
+    <a href="{% url 'dashboard' %}"
+       class="dashboard-button"
+       style="display: block; width: fit-content; margin: 0 auto;">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</div>
+
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const labels = [
+    {% for item in progress_data %}
+        "Module {{ item.module.module_number }}",
+    {% endfor %}
+];
+
+const percentages = [
+    {% for item in progress_data %}
+        {{ item.percentage }},
+    {% endfor %}
+];
+
+new Chart(
+    document.getElementById('progressChart'),
+    {
+        type: 'bar',
+
+        data: {
+            labels: labels,
+
+            datasets: [{
+                label: 'Progress (%)',
+                data: percentages
+            }]
+        },
+
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    }
+);
+
+</script>
+
+{% endblock %}

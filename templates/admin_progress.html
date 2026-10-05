@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Student Progress</h2>
+
+<div style="
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 25px;
+">
+
+    {% for item in progress_data %}
+
+        <div style="
+            padding: 18px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        ">
+
+            <h3>{{ item.student.username }}</h3>
+
+            <p><b>Email:</b> {{ item.student.email }}</p>
+
+            <p>
+                <b>Completed Modules:</b>
+                {{ item.completed_modules }} / {{ item.total_modules }}
+            </p>
+
+            <p>
+                <b>Progress:</b>
+                {{ item.percentage }}%
+            </p>
+
+            <div style="
+                background: #e5e7eb;
+                height: 8px;
+                border-radius: 5px;
+            ">
+                <div style="
+                    background: #1760d5;
+                    width: {{ item.percentage }}%;
+                    height: 8px;
+                    border-radius: 5px;
+                "></div>
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <p>No students available.</p>
+
+    {% endfor %}
+
+</div>
+
+<div style="margin-top: 25px;">
+    <a href="{% url 'admin_dashboard' %}"
+   class="back-dashboard"
+   style="display:block; width:fit-content; margin:30px auto 0; padding:8px 14px; border-radius:7px; background:#1760d5; color:white !important; font-size:13px; font-weight:600;">
+    ← Back to Admin Dashboard
+</a>
+</div>
+
+{% endblock %}

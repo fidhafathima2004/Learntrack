@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}Study Plan - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>📅 Your Study Plan</h1>
+            <p>Your personalized study schedule has been generated.</p>
+        </div>
+    </div>
+
+
+    <div class="card">
+
+        <h3>Study Plan Details</h3>
+
+        <p>
+            <strong>Exam Date:</strong> {{ exam_date }}
+        </p>
+
+        <p>
+            <strong>Daily Study Hours:</strong> {{ daily_hours }} hours
+        </p>
+
+        <a href="{% url 'edit_study_plan' %}"
+           class="dashboard-button">
+            ✏️ Edit Study Plan
+        </a>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>📚 Daily Schedule</h3>
+
+        {% if schedule %}
+
+            {% for item in schedule %}
+
+            <div style="
+                background:#f8fafc;
+                padding:20px;
+                margin:15px 0;
+                border-radius:10px;
+                border:1px solid #e5e7eb;
+            ">
+
+                <h3>
+                    Module {{ item.module_number }}
+                </h3>
+
+                <p>
+                    <strong>📚 Topic:</strong>
+                    {{ item.topic }}
+                </p>
+
+                <p>
+                    <strong>📅 Date:</strong>
+                    {{ item.date }}
+                </p>
+
+                <p>
+                    <strong>⏱️ Study Hours:</strong>
+                    {{ item.hours }} hrs
+                </p>
+
+
+                {% if item.status == 'Completed' %}
+
+                    <p style="color:green;">
+                        <strong>✅ Completed</strong>
+                    </p>
+
+                {% else %}
+
+                    <p style="color:orange;">
+                        <strong>⏳ Pending</strong>
+                    </p>
+
+                    <a href="{% url 'complete_topic' item.module_id item.topic %}"
+                       class="dashboard-button">
+                        ✓ Mark Complete
+                    </a>
+
+                    <a href="{% url 'reschedule_topic' %}?module_id={{ item.module_id }}&topic={{ item.topic|urlencode}}"
+                       class="dashboard-button">
+                        🔄 Reschedule
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>No study schedule available.</p>
+
+        {% endif %}
+
+    </div>
+
+
+    <div style="text-align:center; margin-top:25px;">
+
+        <a href="{% url 'dashboard' %}" class="dashboard-button">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

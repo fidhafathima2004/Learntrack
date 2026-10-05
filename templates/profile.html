@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>My Profile</h2>
+
+<div style="
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 30px auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+">
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <p><b>Username:</b> {{ user.username }}</p>
+
+        <p><b>Email:</b></p>
+        <input type="email"
+               name="email"
+               value="{{ user.email }}"
+               style="width: 100%; padding: 10px; margin-bottom: 15px;">
+
+        <button type="submit" class="dashboard-button">
+            Save Changes
+        </button>
+    </form>
+
+</div>
+
+<div style="text-align: center;">
+    <a href="{% url 'dashboard' %}" class="dashboard-button">
+        ← Back to Dashboard
+    </a>
+</div>
+
+{% endblock %}

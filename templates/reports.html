@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+{% block title %}Progress Reports - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div class="reports-page">
+
+    <div class="reports-card">
+
+        <h1>Progress Report</h1>
+
+        <p class="reports-subtitle">
+            Your overall study performance
+        </p>
+
+        <!-- Overall Status -->
+        <div class="overall-status">
+            <h2>Overall Progress: {{ overall_percentage }}%</h2>
+            <h3>Overall Status: {{ overall_status }}</h3>
+        </div>
+
+        <!-- Module Reports -->
+        <h2 class="module-title">Module-wise Report</h2>
+
+        <div class="report-list">
+
+            {% for item in progress %}
+
+            <div class="report-item">
+
+                <h3>Module {{ item.module.module_number }}</h3>
+
+                <p>
+                    <strong>Score:</strong> {{ item.score }}
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    {% if item.completed %}
+                        Completed
+                    {% else %}
+                        Pending
+                    {% endif %}
+                </p>
+
+                <p>
+                    <strong>Result:</strong>
+                    {% if item.passed %}
+                        Passed
+                    {% else %}
+                        Not Passed
+                    {% endif %}
+                </p>
+
+            </div>
+
+            {% empty %}
+
+            <p class="no-report">
+                No progress data available yet.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="report-buttons">
+
+            <a href="{% url 'dashboard' %}" class="dashboard-button">
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+.reports-page {
+    width: 100%;
+    min-height: calc(100vh - 190px);
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.reports-card {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    border-radius: 18px;
+    padding: 35px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.reports-card h1 {
+    text-align: center;
+    color: #124b9b;
+    margin-bottom: 8px;
+}
+
+.reports-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.overall-status {
+    text-align: center;
+    background: #f5f8ff;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.overall-status h2 {
+    color: #124b9b;
+    margin: 0 0 8px;
+}
+
+.overall-status h3 {
+    margin: 0;
+}
+
+.module-title {
+    color: #124b9b;
+    margin-bottom: 18px;
+}
+
+.report-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.report-item {
+    background: #f5f8ff;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e1e7f2;
+}
+
+.report-item h3 {
+    color: #124b9b;
+    margin-top: 0;
+}
+
+.report-item p {
+    margin: 8px 0;
+}
+
+.no-report {
+    text-align: center;
+    color: #777;
+}
+
+.report-buttons {
+    text-align: center;
+    margin-top: 30px;
+}
+
+</style>
+
+{% endblock %}

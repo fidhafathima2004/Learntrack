@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="dashboard">
+    <div class="card" style="text-align:center;">
+
+        <h2>Test Result 🎉</h2>
+
+        <h1>{{ score }} / {{ total }}</h1>
+
+        <p>Percentage: {{ percentage }}%</p>
+
+        {% if passed %}
+            <h3 style="color:green;">PASS ✅</h3>
+        {% else %}
+            <h3 style="color:red;">FAIL ❌</h3>
+        {% endif %}
+
+        <a href="{% url 'take_test' %}" class="dashboard-button">
+    ← Back to Mock Test
+        </a>
+
+    </div>
+</div>
+
+{% endblock %}

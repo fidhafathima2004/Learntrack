@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Mock Test - LearnTrack{% endblock %}
+
+{% block content %}
+
+<div style="max-width:900px; margin:30px auto; padding:0 20px;">
+
+    <div style="background:#f1f5ff; padding:20px; border-radius:12px;
+                text-align:center; margin-bottom:25px;">
+        <h1>Module {{ module.module_number }} - Mock Test 📝</h1>
+        <p>Answer all questions and submit your test.</p>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% for mcq in mcqs %}
+
+        <div style="background:white; padding:20px; margin-bottom:20px;
+                    border-radius:12px; box-shadow:0 2px 8px #ddd;">
+
+            <p>
+                <strong>{{ forloop.counter }}. {{ mcq.question }}</strong>
+            </p>
+
+            <label>
+                <input type="radio" name="question_{{ mcq.id }}" value="option1">
+                {{ mcq.option1 }}
+            </label><br>
+
+            <label>
+                <input type="radio" name="question_{{ mcq.id }}" value="option2">
+                {{ mcq.option2 }}
+            </label><br>
+
+            <label>
+                <input type="radio" name="question_{{ mcq.id }}" value="option3">
+                {{ mcq.option3 }}
+            </label><br>
+
+            <label>
+                <input type="radio" name="question_{{ mcq.id }}" value="option4">
+                {{ mcq.option4 }}
+            </label>
+
+        </div>
+
+        {% empty %}
+            <p>No questions available.</p>
+        {% endfor %}
+
+        {% if mcqs %}
+        <div style="text-align:center; margin:30px;">
+            <button type="submit"
+                    style="padding:12px 30px; border:0; border-radius:8px;
+                           background:#2563eb; color:white; font-size:16px;
+                           cursor:pointer;">
+                Submit Test
+            </button>
+        </div>
+        {% endif %}
+
+    </form>
+
+</div>
+
+{% endblock %}
