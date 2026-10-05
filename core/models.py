@@ -2,13 +2,33 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class StudentProfile(models.Model):
+    SEMESTER_CHOICES = [
+        ('S1', 'Semester 1'),
+        ('S2', 'Semester 2'),
+    ]
+
+    student = models.OneToOneField(User, on_delete=models.CASCADE)
+    semester = models.CharField(max_length=2, choices=SEMESTER_CHOICES)
+
+    def __str__(self):
+        return self.student.username
+
+
 class Syllabus(models.Model):
+    SEMESTER_CHOICES = [
+        ('S1', 'Semester 1'),
+        ('S2', 'Semester 2'),
+    ]
+
     name = models.CharField(max_length=255, unique=True)
     pdf = models.FileField(upload_to='syllabus/')
+    semester = models.CharField(max_length=2, choices=SEMESTER_CHOICES)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+    
 
 
 class Module(models.Model):
@@ -58,6 +78,7 @@ class ModuleProgress(models.Model):
     score = models.IntegerField(default=0)
     passed = models.BooleanField(default=False)
     completed = models.BooleanField(default=False)
+    completed_topics = models.JSONField(default=list)
 
     def __str__(self):
         return f"{self.student.username} - Module {self.module.module_number}"
