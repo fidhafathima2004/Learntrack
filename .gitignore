@@ -21,6 +21,3 @@ Thumbs.db
 
 # Log files
 *.log
-
-# Scripts
-create_commits.py
