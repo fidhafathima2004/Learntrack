@@ -4,50 +4,59 @@
 
 {% block content %}
 
-<div class="dashboard">
+<div class="admin-dashboard">
 
     <!-- Admin Header -->
-    <div class="dashboard-header">
-        <div>
-            <h1>Admin Dashboard</h1>
-            <p>Manage syllabus, modules, questions and students.</p>
-        </div>
+    <div class="admin-header" style="display: flex; justify-content: space-between; align-items: center;">
 
         <div>
-            👤 <strong>Administrator</strong>
+            <h1>Admin Dashboard</h1>
+            <p>Manage LearnTrack system and monitor students.</p>
         </div>
+
+        <a href="{% url 'logout' %}"
+           style="
+           background: #1760d5;
+           color: white;
+           padding: 10px 18px;
+           border-radius: 8px;
+           text-decoration: none;
+           font-weight: bold;">
+            🚪 Logout
+        </a>
+
     </div>
 
 
-    <!-- Summary Cards -->
-    <div class="summary-cards">
+    <!-- Summary -->
+    <div class="admin-summary">
 
-        <div class="summary-card">
-            <div class="summary-icon">📚</div>
+        <div class="admin-summary-card">
+            <div class="admin-summary-icon">📚</div>
             <div>
                 <h3>{{ syllabus_count }}</h3>
                 <p>Syllabus</p>
             </div>
         </div>
 
-        <div class="summary-card">
-            <div class="summary-icon">📖</div>
+        <div class="admin-summary-card">
+            <div class="admin-summary-icon">📖</div>
             <div>
                 <h3>{{ module_count }}</h3>
                 <p>Modules</p>
             </div>
         </div>
 
-        <div class="summary-card">
-            <div class="summary-icon">📝</div>
+        <div class="admin-summary-card">
+            <div class="admin-summary-icon">📝</div>
             <div>
                 <h3>{{ mcq_count }}</h3>
                 <p>MCQ Questions</p>
             </div>
         </div>
 
-        <div class="summary-card">
-            <div class="summary-icon">👥</div>
+        <div class="admin-summary-card">
+            <div class="admin-summary-icon">👨‍🎓</div>
             <div>
                 <h3>{{ student_count }}</h3>
                 <p>Students</p>
@@ -57,69 +66,55 @@
     </div>
 
 
-    <!-- Admin Functions -->
-    <div class="dashboard-cards">
+    <!-- Management Cards -->
+    <div class="admin-cards">
 
-        <!-- Upload Syllabus -->
-        <div class="card">
-            <div class="card-icon">📄</div>
-
-            <h3>Upload Syllabus</h3>
-
-            <p>
-                Upload the course syllabus PDF and extract study modules automatically.
-            </p>
-
-            <a href="{% url 'upload_syllabus' %}" class="dashboard-button">
+        <div class="admin-card">
+            <div class="admin-card-icon">📄</div>
+            <h2>Upload Syllabus</h2>
+            <p>Upload and manage syllabus PDF files.</p>
+            <a href="{% url 'upload_syllabus' %}" class="admin-button">
                 Upload Syllabus →
             </a>
         </div>
 
 
-        <!-- Manage Modules -->
-        <div class="card">
-            <div class="card-icon">📚</div>
-
-            <h3>Manage Modules</h3>
-
-            <p>
-                View and manage the modules extracted from the uploaded syllabus.
-            </p>
-
-            <a href="{% url 'syllabus' %}" class="dashboard-button">
+        <div class="admin-card">
+            <div class="admin-card-icon">📚</div>
+            <h2>Manage Modules</h2>
+            <p>View, edit and manage syllabus modules.</p>
+            <a href="{% url 'admin_modules' %}" class="admin-button">
                 Manage Modules →
             </a>
         </div>
 
 
-        <!-- Question Bank -->
-        <div class="card">
-            <div class="card-icon">📝</div>
-
-            <h3>Question Bank</h3>
-
-            <p>
-                Add and manage module-wise MCQ questions for student assessments.
-            </p>
-
-            <a href="{% url 'question_bank' %}" class="dashboard-button">
+        <div class="admin-card">
+            <div class="admin-card-icon">📝</div>
+            <h2>Question Bank</h2>
+            <p>Manage module-wise MCQ questions.</p>
+            <a href="{% url 'question_bank' %}" class="admin-button">
                 Question Bank →
             </a>
         </div>
 
 
-        <!-- Student Management -->
-        <div class="card">
-            <div class="card-icon">👥</div>
+        <div class="admin-card">
+            <div class="admin-card-icon">👨‍🎓</div>
+            <h2>Manage Students</h2>
+            <p>View and manage registered students.</p>
+            <a href="{% url 'manage_students' %}" class="admin-button">
+                Manage Students →
+            </a>
+        </div>
 
-            <h3>Student Management</h3>
 
-            <p>
-                View and manage registered students and their information.
-            </p>
-
-            <a href="#" class="dashboard-button">
-                Student Management →
+        <div class="admin-card">
+            <div class="admin-card-icon">📊</div>
+            <h2>Student Progress</h2>
+            <p>Monitor student progress and performance.</p>
+            <a href="{% url 'admin_progress' %}" class="admin-button">
+                View Progress →
             </a>
         </div>
 

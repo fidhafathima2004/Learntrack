@@ -30,6 +30,16 @@
 
             {% csrf_token %}
 
+            <label for="semester">Semester</label>
+
+            <div class="file-box">
+                <select id="semester" name="semester" required>
+                    <option value="">Select Semester</option>
+                    <option value="S1">Semester 1</option>
+                    <option value="S2">Semester 2</option>
+                </select>
+            </div>
+
             <label for="syllabus">Syllabus PDF</label>
 
             <div class="file-box">
@@ -52,9 +62,11 @@
 
         </form>
 
-        <a href="{% url 'admin_dashboard' %}" class="back-link">
-            ← Back to Admin Dashboard
-        </a>
+        <a href="{% url 'admin_dashboard' %}"
+   class="back-dashboard"
+   style="display:block; width:fit-content; margin:30px auto 0; padding:8px 14px; border-radius:7px; background:#1760d5; color:white !important; font-size:13px; font-weight:600;">
+    ← Back to Admin Dashboard
+</a>
 
     </div>
 

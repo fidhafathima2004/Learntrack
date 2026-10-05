@@ -4,38 +4,197 @@
 
 {% block content %}
 
-<div class="dashboard">
+<div class="syllabus-page">
 
-    <h1>My Syllabus</h1>
-    <p>View your syllabus and modules.</p>
+    <div class="syllabus-header">
+        {% if is_admin_page %}
+            <h1>Manage Modules</h1>
+            <p>Select a semester to view its syllabus and modules.</p>
+        {% else %}
+            <h1>My Syllabus</h1>
+            <p>View your course syllabus and study modules.</p>
+        {% endif %}
+    </div>
 
-    {% for syllabus in syllabuses %}
 
-        <div class="card" style="margin-top: 20px;">
+    {% if is_admin_page %}
 
-            <h2>{{ syllabus.name }}</h2>
+        <!-- Semester Buttons -->
+        <div style="display:flex; gap:30px; justify-content:center; margin:40px 0;">
 
-            {% for module in syllabus.modules.all %}
+            <a href="?semester=S1"
+               class="dashboard-button"
+               style="padding:25px 60px; font-size:20px;">
+                📘 Semester 1
+            </a>
 
-                <h3 style="margin-top: 20px;">
-                    Module {{ module.module_number }}
-                </h3>
-
-                <ul>
-                    {% for topic in module.topics %}
-                        <li>{{ topic }}</li>
-                    {% endfor %}
-                </ul>
-
-            {% endfor %}
+            <a href="?semester=S2"
+               class="dashboard-button"
+               style="padding:25px 60px; font-size:20px;">
+                📗 Semester 2
+            </a>
 
         </div>
 
-    {% empty %}
 
-        <p>No syllabus available.</p>
+        <!-- Admin Semester Syllabus -->
+        {% if request.GET.semester %}
 
-    {% endfor %}
+            {% for syllabus in syllabuses %}
+
+                {% if syllabus.semester == request.GET.semester %}
+
+                    <div class="syllabus-card">
+
+                        <div class="syllabus-title">
+                            <div class="syllabus-icon">📚</div>
+
+                            <div>
+                                <h2>{{ syllabus.name }}</h2>
+                                <p>
+                                    Semester {{ syllabus.semester|slice:"1:" }} Syllabus
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="module-list">
+
+                            {% for module in syllabus.modules.all %}
+
+                                <div class="module-card">
+
+                                    <div class="module-number">
+                                        {{ module.module_number }}
+                                    </div>
+
+                                    <div class="module-content">
+
+                                        <h3>
+                                            Module {{ module.module_number }}
+                                        </h3>
+
+                                        <ul>
+                                            {% for topic in module.topics %}
+                                                <li>{{ topic }}</li>
+                                            {% endfor %}
+                                        </ul>
+
+                                        <a href="{% url 'edit_module' module.id %}"
+                                           class="dashboard-button">
+                                            ✏️ Edit
+                                        </a>
+
+                                        <a href="{% url 'delete_module' module.id %}"
+                                           class="dashboard-button">
+                                            🗑️ Delete
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            {% empty %}
+
+                                <p>No modules available for this syllabus.</p>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+        {% endif %}
+
+
+    {% else %}
+
+        <!-- Student Syllabus -->
+        {% for syllabus in syllabuses %}
+
+            <div class="syllabus-card">
+
+                <div class="syllabus-title">
+
+                    <div class="syllabus-icon">📚</div>
+
+                    <div>
+                        <h2>{{ syllabus.name }}</h2>
+                        <p>Course Syllabus</p>
+                    </div>
+
+                </div>
+
+
+                <div class="module-list">
+
+                    {% for module in syllabus.modules.all %}
+
+                        <div class="module-card">
+
+                            <div class="module-number">
+                                {{ module.module_number }}
+                            </div>
+
+                            <div class="module-content">
+
+                                <h3>
+                                    Module {{ module.module_number }}
+                                </h3>
+
+                                <ul>
+                                    {% for topic in module.topics %}
+                                        <li>{{ topic }}</li>
+                                    {% endfor %}
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        {% empty %}
+
+            <div class="empty-syllabus">
+                <div>📄</div>
+                <h2>No Syllabus Available</h2>
+                <p>No syllabus is available for your semester.</p>
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+
+    <!-- Back Button -->
+    <div style="text-align:center; margin-top:20px;">
+
+        {% if is_admin_page %}
+
+            <a href="{% url 'admin_dashboard' %}"
+               class="dashboard-button">
+                ← Back to Dashboard
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'dashboard' %}"
+               class="dashboard-button">
+                ← Back to Dashboard
+            </a>
+
+        {% endif %}
+
+    </div>
 
 </div>
 

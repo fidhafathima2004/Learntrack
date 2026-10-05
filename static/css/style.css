@@ -18,12 +18,15 @@ header {
     color: white;
     padding: 16px 65px;
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
 }
 
 .brand {
     display: flex;
     align-items: center;
     gap: 18px;
+    flex: 1;
 }
 
 .brand-logo {
@@ -1169,4 +1172,61 @@ a {
   .card {
     margin-bottom: 1rem;
   }
+}
+.dashboard {
+    padding: 20px;
+}
+
+.dashboard-header {
+    margin-bottom: 15px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 26px;
+}
+
+.dashboard-header p {
+    margin: 5px 0;
+}
+
+.card {
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.dashboard-button {
+    padding: 8px 14px;
+    font-size: 14px;
+}
+header {
+    height: 105px;
+    background: linear-gradient(135deg, #1760d5, #2454c5);
+    color: white;
+    padding: 16px 65px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.logout-button {
+    position: absolute;
+    right: 65px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+header > a.logout-button {
+    position: absolute !important;
+    right: 65px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: white !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    margin: 0 !important;
+    display: block !important;
 }

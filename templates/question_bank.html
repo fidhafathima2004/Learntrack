@@ -6,6 +6,7 @@
 
 <div class="dashboard">
 
+    <!-- Page Header -->
     <div class="dashboard-header">
         <div>
             <h1>Question Bank 📝</h1>
@@ -13,6 +14,8 @@
         </div>
     </div>
 
+
+    <!-- Add New MCQ -->
     <div class="card">
 
         <h3>Add New MCQ</h3>
@@ -22,66 +25,102 @@
         </p>
 
         <a href="{% url 'add_mcq' %}" class="dashboard-button">
-    + Add Question
-</a>
+            + Add Question
+        </a>
 
     </div>
 
-    <div class="card">
 
-        <h3>Existing Questions</h3>
+    <!-- Module Selection -->
+<div class="card">
 
-        {% if mcqs %}
+    <h3>Select Semester</h3>
 
-        <div style="overflow-x:auto;">
+    <p>
+        Select a semester to view its modules.
+    </p>
 
-            <table style="width:100%; border-collapse:collapse; margin-top:15px;">
+    <div class="dashboard-cards">
 
-                <thead>
-                    <tr>
-                        <th style="padding:12px; text-align:left;">#</th>
-                        <th style="padding:12px; text-align:left;">Module</th>
-                        <th style="padding:12px; text-align:left;">Question</th>
-                    </tr>
-                </thead>
+        <div class="card">
+            <div class="card-icon">📘</div>
 
-                <tbody>
+            <h3>Semester 1</h3>
 
-                    {% for mcq in mcqs %}
+            <p>View Semester 1 modules.</p>
 
-                    <tr>
-                        <td style="padding:12px;">{{ forloop.counter }}</td>
+            <a href="?semester=S1" class="dashboard-button">
+                View Semester 1 →
+            </a>
+        </div>
 
-                        <td style="padding:12px;">
-                            Module {{ mcq.module.module_number }}
-                        </td>
 
-                        <td style="padding:12px;">
-                            {{ mcq.question }}
-                        </td>
-                    </tr>
+        <div class="card">
+            <div class="card-icon">📗</div>
 
-                    {% endfor %}
+            <h3>Semester 2</h3>
 
-                </tbody>
+            <p>View Semester 2 modules.</p>
 
-            </table>
+            <a href="?semester=S2" class="dashboard-button">
+                View Semester 2 →
+            </a>
+        </div>
+
+    </div>
+
+
+    {% if request.GET.semester %}
+
+        <h3 style="margin-top:30px;">
+            Semester {{ request.GET.semester|slice:"1:" }} Modules
+        </h3>
+
+        <div class="dashboard-cards">
+
+            {% for module in modules %}
+
+                {% if module.syllabus.semester == request.GET.semester %}
+
+                    <div class="card">
+
+                        <div class="card-icon">📚</div>
+
+                        <h3>
+                            Module {{ module.module_number }}
+                        </h3>
+
+                        <p>
+                            View questions from Module {{ module.module_number }}.
+                        </p>
+
+                        <a href="{% url 'module_questions' module.id %}"
+                           class="dashboard-button">
+                            View Questions →
+                        </a>
+
+                    </div>
+
+                {% endif %}
+
+            {% empty %}
+
+                <p>No modules available.</p>
+
+            {% endfor %}
 
         </div>
 
-        {% else %}
+    {% endif %}
 
-        <p style="margin-top:15px;">
-            No MCQ questions have been added yet.
-        </p>
+</div>
 
-        {% endif %}
-
-    </div>
-
-    <a href="{% url 'admin_dashboard' %}" class="dashboard-button">
-        ← Back to Admin Dashboard
-    </a>
+    <!-- Back Button -->
+    <a href="{% url 'admin_dashboard' %}"
+   class="back-dashboard"
+   style="display:block; width:fit-content; margin:30px auto 0; padding:8px 14px; border-radius:7px; background:#1760d5; color:white !important; font-size:13px; font-weight:600;">
+    ← Back to Admin Dashboard
+</a>
 
 </div>
 

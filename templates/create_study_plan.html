@@ -8,9 +8,7 @@
 
     <div class="study-plan-card">
 
-        <div class="study-plan-icon">
-            📅
-        </div>
+        <div class="study-plan-icon">📅</div>
 
         <h1>Create Your Study Plan</h1>
 
@@ -18,47 +16,51 @@
             Enter your exam date and available daily study hours.
         </p>
 
-        <form method="POST">
-
+        <form method="POST" action="{% url 'create_study_plan' %}">
             {% csrf_token %}
 
             <label for="exam_date">Exam Date</label>
 
             <div class="plan-input">
                 <span>📅</span>
-                <input
-                    type="date"
-                    id="exam_date"
-                    name="exam_date"
-                    required
-                >
+                <input type="date"
+                       id="exam_date"
+                       name="exam_date"
+                       value="{% if existing_plan %}{{ existing_plan.exam_date|date:'Y-m-d' }}{% endif %}"
+                       required>
             </div>
 
+
             <label for="daily_hours">Daily Study Hours</label>
+            <p class="plan-note">
+    Suggested study hours: <strong>{{ suggested_hours }} hours/day</strong>
+</p>
 
             <div class="plan-input">
                 <span>⏱️</span>
-                <input
-                    type="number"
-                    id="daily_hours"
-                    name="daily_hours"
-                    min="1"
-                    max="24"
-                    step="0.5"
-                    placeholder="Example: 3"
-                    required
-                >
+                <input type="number"
+                       id="daily_hours"
+                       name="daily_hours"
+                       min="1"
+                       max="24"
+                       step="0.5"
+                       placeholder="Example: 3"
+                       value="{% if existing_plan %}{{ existing_plan.daily_hours }}{% endif %}"
+                       required>
             </div>
+
 
             <p class="plan-note">
                 Enter the number of hours you can study each day.
             </p>
+
 
             <button type="submit" class="plan-button">
                 Generate Study Plan →
             </button>
 
         </form>
+
 
         <a href="{% url 'dashboard' %}" class="back-link">
             ← Back to Dashboard
